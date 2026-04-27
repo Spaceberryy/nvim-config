@@ -8,10 +8,12 @@ return {
             shade_filetypes = {},
             shade_terminals = true,
             shading_factor = 2,
-            direction = "horizontal", -- 'vertical' | 'horizontal' | 'tab' | 'float'
-            -- float_opts = {
-            --     border = "curved", -- 'single' | 'double' | 'shadow' | 'curved'
-            -- },
+            direction = "float",   -- 'vertical' | 'horizontal' | 'tab' | 'float'
+            float_opts = {
+                border = "curved", -- 'single' | 'double' | 'shadow' | 'curved'
+                width = vim.o.columns,
+                height = vim.o.lines,
+            },
         })
 
         -- Keymap to run file based on filetype
@@ -34,7 +36,7 @@ return {
             end
 
             require("toggleterm.terminal").Terminal
-                :new({ cmd = cmd, direction = "horizontal", close_on_exit = false })
+                :new({ cmd = cmd, direction = "float", close_on_exit = false })
                 :toggle()
         end, { desc = "Run current file", noremap = true, silent = true })
     end,
